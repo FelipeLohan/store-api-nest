@@ -4,7 +4,7 @@ import { UsersRepository } from "./users.repository";
 @Controller("/users")
 export class UsersController {
 
-  userRepo = new UsersRepository;
+  constructor(private userRepo: UsersRepository){}
 
   @Post()
   async newUser(@Body() userData){

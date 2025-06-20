@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Put, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Put, Param, Delete } from '@nestjs/common';
 import { ProductsRepository } from './products.repository';
 import { ProductDTO } from './dtos/ProductDTO';
 import { ProductEntity } from './products.entity';
@@ -48,5 +48,15 @@ export class ProductsController {
     };
   }
 
+  @Delete('/:id')
+  async remove(@Param('id') id: string) {
+    await this.productRepo.remove(id);
+
+    return {
+      message: "sucess",
+      status: 204,
+      data: {}
+    };
+  }
 
 }

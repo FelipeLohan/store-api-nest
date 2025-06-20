@@ -13,7 +13,7 @@ import {
 import { ImageProductDTO } from './ImageProductDTO';
 import { CharacteristicsProductDTO } from './CharacteristicsProductDTO';
 
-export class AtualizaProdutoDTO {
+export class UpdateProductDTO {
   @IsUUID(undefined, { message: 'ID do produto inválido' })
   id: string;
 

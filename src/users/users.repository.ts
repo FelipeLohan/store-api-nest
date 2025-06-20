@@ -1,42 +1,50 @@
-import { Injectable } from "@nestjs/common";
-import { UserEntity } from "./users.entity";
+import { Injectable } from '@nestjs/common';
+import { UserEntity } from './users.entity';
 
 @Injectable()
-export class UsersRepository{
+export class UsersRepository {
   private usersData: UserEntity[] = [];
 
-  async save(usersData: UserEntity){
+  async save(usersData: UserEntity) {
     this.usersData.push(usersData);
 
     console.log(this.usersData);
-  };
+  }
 
   async listAll() {
     return this.usersData;
   }
 
-  async update(id: string , body: Partial<UserEntity>){
-    const savedUser = this.usersData.find(
-        user => user.id === id
-    );
+  async update(id: string, body: Partial<UserEntity>) {
+    const savedUser = this.usersData.find((user) => user.id === id);
 
-    if(!savedUser) {
-        throw new Error('Usuário não existe');
+    if (!savedUser) {
+      throw new Error('Usuário não existe');
     }
 
     Object.entries(body).forEach(([key, value]) => {
-        if(key === 'id') {
-            return;
-        }
+      if (key === 'id') {
+        return;
+      }
 
-        savedUser[key] = value;
+      savedUser[key] = value;
     });
 
     return savedUser;
   }
 
-  async emailExits(email){
-    const user = this.usersData.find(user => user.email === email);
+  async delete(id: string) {
+    const user = this.usersData.find((user) => user.id === id);
+
+    if (!user) {
+      throw new Error('O usuário não existe.');
+    }
+
+    this.usersData = this.usersData.filter((user) => user.id !== id);
+  }
+
+  async emailExits(email) {
+    const user = this.usersData.find((user) => user.email === email);
 
     return user !== undefined;
   }

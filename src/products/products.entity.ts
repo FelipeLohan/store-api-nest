@@ -1,14 +1,14 @@
-class CaracteristicaProduto {
+class CharacteristicsProduct {
   name: string;
   description: string;
 }
 
-class ImagemProduto {
+class ImageProduct {
   url: string;
   description: string;
 }
 
-export class ProdutoEntity {
+export class ProductEntity {
   id: string;
   userId: string;
   name: string;
@@ -16,6 +16,6 @@ export class ProdutoEntity {
   quantity: number;
   description: string;
   categories: string;
-  characteristics: CaracteristicaProduto[];
-  images: ImagemProduto[];
+  characteristics: CharacteristicsProduct[];
+  images: ImageProduct[];
 }

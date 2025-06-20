@@ -21,6 +21,19 @@ export class ProductsRepository {
     return product;
   }
 
+  async update(id: string, body: Partial<ProductEntity>) {
+    const notUpdatedData = ['id', 'userId'];
+    const product = this.findById(id);
+    Object.entries(body).forEach(([key, value]) => {
+      if (notUpdatedData.includes(key)) {
+        return;
+      }
+      product[key] = value;
+    });
+
+    return product;
+  }
+
   async listAll() {
     return this.productsData;
   }

@@ -34,6 +34,14 @@ export class ProductsRepository {
     return product;
   }
 
+  async remove(id: string) {
+    const removedProduct = this.findById(id);
+    this.productsData = this.productsData.filter(
+      (product) => product.id !== id,
+    );
+    return removedProduct;
+  }
+
   async listAll() {
     return this.productsData;
   }

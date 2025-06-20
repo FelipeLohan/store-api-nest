@@ -10,7 +10,6 @@ class ImageProduct {
 
 export class ProductEntity {
   id: string;
-  userId: string;
   name: string;
   value: number;
   quantity: number;

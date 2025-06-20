@@ -10,15 +10,12 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { CharacteristicsProductDTO } from './CharacteristicsProductDTO';
 import { ImageProductDTO } from './ImageProductDTO';
+import { CharacteristicsProductDTO } from './CharacteristicsProductDTO';
 
 export class AtualizaProdutoDTO {
   @IsUUID(undefined, { message: 'ID do produto inválido' })
   id: string;
-
-  @IsUUID(undefined, { message: 'ID de usuário inválido' })
-  userId: string;
 
   @IsString()
   @IsNotEmpty({ message: 'Nome do produto não pode ser vazio' })

@@ -24,10 +24,13 @@ export class ProductsController {
 
   @Get()
   async findAll() {
+
+    const productsData = await this.productRepo.listAll();
+
     return {
       message: 'sucess',
       status: 200,
-      data: this.productRepo.listAll(),
+      data: productsData,
     };
   }
 
@@ -40,10 +43,10 @@ export class ProductsController {
 
     return {
       message: 'success',
-      status: 200,
+      status: 201,
       data: updatedProduct,
     };
   }
 
-  
+
 }

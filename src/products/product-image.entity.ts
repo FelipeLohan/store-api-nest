@@ -1,0 +1,11 @@
+import { Column, Entity } from "typeorm";
+
+@Entity({ name: "product_image"})
+export class ProductImage {
+  
+  @Column({ name: "url", nullable: false})
+  url: string;
+
+  @Column({ name: "description", length: 255, nullable: false})
+  description: string;
+}

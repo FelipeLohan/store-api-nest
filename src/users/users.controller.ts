@@ -5,29 +5,29 @@ import { UserDTO } from './dtos/UserDTO';
 import { v4 as uuid } from 'uuid';
 import { UserListDTO } from './dtos/UserListDTO';
 import { UpdateUserDTO } from './dtos/UpdateUserDTO';
+import { UserService } from './users.service';
 
 @Controller('/users')
 export class UsersController {
-  constructor(private userRepo: UsersRepository) {}
+  constructor(
+    private userRepo: UsersRepository,
+    private userService: UserService
+  ) {}
 
   @Post()
   async newUser(@Body() userData: UserDTO) {
     const userEntity: UserEntity = { ...userData, id: uuid() };
 
-    this.userRepo.save(userEntity);
+    const newUser = this.userService.createUser(userEntity);
 
-    return userEntity;
+    return newUser;
   }
 
   @Get()
   async listAllUsers() {
-    const savedUsers: UserEntity[] = await this.userRepo.listAll();
+    const savedUsers: UserListDTO[] = await this.userService.listAllUsers()
     
-    const usersList: UserListDTO[] = savedUsers.map(
-      (user) => new UserListDTO(user.name, user.id),
-    );
-
-    return usersList;
+    return savedUsers;
   }
 
   @Put("/:id")

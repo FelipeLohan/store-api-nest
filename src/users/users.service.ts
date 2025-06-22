@@ -17,4 +17,10 @@ export class UserService{
 
     return usersList;
   }
+
+  async createUser(newUser: UserEntity){
+    const user = await this.userRepository.save(newUser);
+
+    return user;
+  }
 }

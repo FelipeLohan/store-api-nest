@@ -14,6 +14,7 @@ import { ImageProductDTO } from './ImageProductDTO';
 import { CharacteristicsProductDTO } from './CharacteristicsProductDTO';
 
 export class UpdateProductDTO {
+  @IsOptional()
   @IsUUID(undefined, { message: 'ID do produto inválido' })
   id: string;
 

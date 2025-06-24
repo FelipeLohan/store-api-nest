@@ -10,6 +10,12 @@ export class ProductService {
     private readonly productRepository: Repository<ProductEntity>
   ){}
 
+  async listAllProducts(){
+    const productList = await this.productRepository.find();
+
+    return productList;
+  }
+
   async createProduct(newProduct: ProductEntity){
     const savedProcuct = await this.productRepository.save(newProduct);
 
@@ -17,6 +23,12 @@ export class ProductService {
   }
 
   async updateProduct(id: string, updatedProduct: Partial<ProductEntity>){
-    return await this.productRepository.update(id, updatedProduct)
+    const productUpdate = await this.productRepository.update(id, updatedProduct)
+
+    return productUpdate
+  }
+
+  async deleteProduct(id: string){
+    return await this.productRepository.delete(id);
   }
 }

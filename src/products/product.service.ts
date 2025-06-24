@@ -23,9 +23,11 @@ export class ProductService {
   }
 
   async updateProduct(id: string, updatedProduct: Partial<ProductEntity>){
-    const productUpdate = await this.productRepository.update(id, updatedProduct)
+    await this.productRepository.update(id, updatedProduct)
+    
+    const product = await this.productRepository.findOneBy({id: id})
 
-    return productUpdate
+    return product;
   }
 
   async deleteProduct(id: string){

@@ -26,7 +26,7 @@ export class ProductsController {
   @Get()
   async findAll() {
 
-    const productsData = await this.productRepo.listAll();
+    const productsData = await this.productService.listAllProducts();
 
     return {
       message: 'sucess',
@@ -40,7 +40,7 @@ export class ProductsController {
     @Param('id') id: string,
     @Body() productData: UpdateProductDTO,
   ) {
-    const updatedProduct = await this.productRepo.update(id, productData);
+    const updatedProduct = await this.productService.updateProduct(id, productData);
 
     return {
       message: 'success',
@@ -51,7 +51,7 @@ export class ProductsController {
 
   @Delete('/:id')
   async remove(@Param('id') id: string) {
-    await this.productRepo.remove(id);
+    await this.productService.deleteProduct(id);
 
     return {
       message: "sucess",

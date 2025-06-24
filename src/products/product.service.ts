@@ -15,4 +15,8 @@ export class ProductService {
 
     return savedProcuct;
   }
+
+  async updateProduct(id: string, updatedProduct: Partial<ProductEntity>){
+    return await this.productRepository.update(id, updatedProduct)
+  }
 }

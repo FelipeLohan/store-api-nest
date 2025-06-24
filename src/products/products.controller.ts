@@ -4,16 +4,17 @@ import { ProductDTO } from './dtos/ProductDTO';
 import { ProductEntity } from './products.entity';
 import { v4 as uuid } from 'uuid';
 import { UpdateProductDTO } from './dtos/UpdateProductDTO';
+import { ProductService } from './product.service';
 
 @Controller('/products')
 export class ProductsController {
-  constructor(private productRepo: ProductsRepository) {}
+  constructor(private productRepo: ProductsRepository, private productService: ProductService) {}
 
   @Post()
   async newProduct(@Body() productData: ProductDTO) {
     const product: ProductEntity = { ...productData, id: uuid() };
 
-    this.productRepo.save(product);
+    this.productService.createProduct(product);
 
     return {
       message: 'sucess',

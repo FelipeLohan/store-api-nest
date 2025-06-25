@@ -8,7 +8,7 @@ export class ProductsRepository {
   async save(product: ProductEntity) {
     this.productsData.push(product);
 
-    console.log(this.productsData)
+    console.log(this.productsData);
 
     return product;
   }

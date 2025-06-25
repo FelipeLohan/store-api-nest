@@ -1,4 +1,12 @@
-import { Body, Controller, Post, Get, Put, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductsRepository } from './products.repository';
 import { ProductDTO } from './dtos/ProductDTO';
 import { ProductEntity } from './products.entity';
@@ -8,7 +16,7 @@ import { ProductService } from './product.service';
 
 @Controller('/products')
 export class ProductsController {
-  constructor(private productRepo: ProductsRepository, private productService: ProductService) {}
+  constructor(private productService: ProductService) {}
 
   @Post()
   async newProduct(@Body() productData: ProductDTO) {
@@ -25,7 +33,6 @@ export class ProductsController {
 
   @Get()
   async findAll() {
-
     const productsData = await this.productService.listAllProducts();
 
     return {
@@ -40,7 +47,10 @@ export class ProductsController {
     @Param('id') id: string,
     @Body() productData: UpdateProductDTO,
   ) {
-    const updatedProduct = await this.productService.updateProduct(id, productData);
+    const updatedProduct = await this.productService.updateProduct(
+      id,
+      productData,
+    );
 
     return {
       message: 'success',
@@ -54,10 +64,9 @@ export class ProductsController {
     await this.productService.deleteProduct(id);
 
     return {
-      message: "sucess",
+      message: 'sucess',
       status: 204,
-      data: {}
+      data: {},
     };
   }
-
 }

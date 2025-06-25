@@ -1,6 +1,9 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ProductEntity } from '../products.entity';
 
-export class CharacteristicsProductDTO{
+export class CharacteristicsProductDTO {
+  @IsOptional()
+  id: string;
 
   @IsString()
   @IsNotEmpty()
@@ -9,4 +12,7 @@ export class CharacteristicsProductDTO{
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @IsOptional()
+  product: ProductEntity;
 }

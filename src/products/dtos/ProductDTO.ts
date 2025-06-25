@@ -1,7 +1,14 @@
-import { IsArray, IsNotEmpty, IsNumber, IsString, Min, ValidateNested } from "class-validator";
-import { CharacteristicsProductDTO } from "./CharacteristicsProductDTO";
-import { ImageProductDTO } from "./ImageProductDTO";
-import { Type } from "class-transformer";
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Min,
+  ValidateNested,
+} from 'class-validator';
+import { CharacteristicsProductDTO } from './CharacteristicsProductDTO';
+import { ImageProductDTO } from './ImageProductDTO';
+import { Type } from 'class-transformer';
 
 export class ProductDTO {
   @IsNotEmpty()
